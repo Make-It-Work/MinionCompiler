@@ -5,9 +5,22 @@ public class Token {
 	private String content;
 	private Identifier identifier;
 	private int level;
-	private int partner;
+	private Token partner;
 	
-	public Token(int lineNumber) {
+	public Token(int lineNumber, int linePosition, String content, Identifier identifier, int level) {
 		this.lineNumber = lineNumber;
+		this.linePosition = linePosition;
+		this.content = content;
+		this.identifier = identifier;
+		this.level = level;
+	}
+	
+	public void setPartner(Token partner) {
+		this.partner = partner;
+	}
+	
+	public void printToken() {
+		System.out.print("LineNumber: " + lineNumber + " linePosition: " + linePosition + System.lineSeparator());
+		System.out.println("Content: " + content);
 	}
 }
