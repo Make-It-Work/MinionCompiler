@@ -18,13 +18,26 @@ public enum Identifier {
 	EQUALS("==", false, false, false);
 	
 	private String value;
+	private boolean isOpener;
+	private boolean isClosing;
+	private boolean needsClosing;
     private Identifier(String value, boolean isOpener, boolean isClosing, boolean needsClosing )
     {
        this.value = value;
+       this.isOpener = isOpener;
+       this.isClosing = isClosing;
+       this.needsClosing = needsClosing;
     }
 
     public String toString()
     {
        return this.value; //will return , or ' instead of COMMA or APOSTROPHE
+    }
+    
+    public boolean isOpener() {
+    	return this.isOpener;
+    }
+    public boolean isClosing() {
+    	return this.isClosing;
     }
 }

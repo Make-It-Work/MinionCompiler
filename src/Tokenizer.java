@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Tokenizer {
 	private static ArrayList<Token> tokenList = new ArrayList<Token>();
+	private static int level = 0;
 	public static void main(String [] args) {
 		int lineCounter = 0;
         // The name of the file to open.
@@ -26,7 +27,7 @@ public class Tokenizer {
                 	charCounter++;
                     Identifier i = isInIdentifiers(item);
                     if(i != null) {
-                    	Token t = new Token(lineCounter, charCounter, item, i, 1);
+                    	Token t = new Token(lineCounter, charCounter, item, i, level);
                     	tokenList.add(t);
                     }
                     charCounter += item.length();
@@ -51,6 +52,11 @@ public class Tokenizer {
 	public static Identifier isInIdentifiers(String isIn) {
     	for(Identifier i : Identifier.values()) {
     		if (i.toString().equals(isIn)) {
+    			if (i.isOpener()) {
+    				level++;
+    			} else if (i.isClosing()) {
+    				level--;
+    			}
     			return i;
     		}
     	}

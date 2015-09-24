@@ -22,5 +22,6 @@ public class Token {
 	public void printToken() {
 		System.out.print("LineNumber: " + lineNumber + " linePosition: " + linePosition + System.lineSeparator());
 		System.out.println("Content: " + content);
+		System.out.println("Level: " + level);
 	}
 }
