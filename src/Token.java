@@ -23,5 +23,13 @@ public class Token {
 		System.out.print("LineNumber: " + lineNumber + " linePosition: " + linePosition + System.lineSeparator());
 		System.out.println("Content: " + content);
 		System.out.println("Level: " + level);
+		if(partner != null) {
+			System.out.println("Partner: " + partner.content);
+		}
+		System.out.println("__________");
+	}
+	
+	public Identifier getIdentifier() {
+		return this.identifier;
 	}
 }

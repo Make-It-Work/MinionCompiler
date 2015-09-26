@@ -1,11 +1,17 @@
 import java.io.*;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 
 public class Tokenizer {
 	private static ArrayList<Token> tokenList = new ArrayList<Token>();
+	private static Deque<Token> stack = new ArrayDeque<Token>();
 	private static int level = 0;
+	private static int lineCounter = 0;
+	private static int charCounter = 0;
+	
 	public static void main(String [] args) {
-		int lineCounter = 0;
+		
         // The name of the file to open.
         String fileName = "src/minion.txt";
 
@@ -20,16 +26,12 @@ public class Tokenizer {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-            	int charCounter = 0;
+            	charCounter = 0;
             	lineCounter++;
                 String[] tokens = line.split(" ");
                 for (String item : tokens) {
                 	charCounter++;
                     Identifier i = isInIdentifiers(item);
-                    if(i != null) {
-                    	Token t = new Token(lineCounter, charCounter, item, i, level);
-                    	tokenList.add(t);
-                    }
                     charCounter += item.length();
                 }
             }
@@ -52,9 +54,31 @@ public class Tokenizer {
 	public static Identifier isInIdentifiers(String isIn) {
     	for(Identifier i : Identifier.values()) {
     		if (i.toString().equals(isIn)) {
+    			Token t = new Token(lineCounter, charCounter, isIn, i, level);
+            	tokenList.add(t);
     			if (i.isOpener()) {
-    				level++;
+    				if(i.name().equals("QUOTE") && stack.peek() != null && stack.peek().getIdentifier().name().equals("QUOTE")) {
+            			stack.pop();
+            			level--;
+            		} else {
+            			stack.push(t);
+            			level++;
+            		}
     			} else if (i.isClosing()) {
+    				Token openToken = stack.pop();
+    				if (i.isMatching(openToken.getIdentifier())) {
+    					t.setPartner(openToken);
+    					openToken.setPartner(t);
+    				} else if(openToken.getIdentifier().name().equals("UNDERWEAR")) {
+    					Token newOpenToken = stack.pop();
+    					level--;
+    					if (i.isMatching(newOpenToken.getIdentifier())) {
+        					t.setPartner(newOpenToken);
+        					newOpenToken.setPartner(t);
+        				} else {
+        					System.out.println("BEEDOOBEEDOO");
+        				}
+    				}
     				level--;
     			}
     			return i;

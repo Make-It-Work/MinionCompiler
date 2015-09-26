@@ -40,4 +40,14 @@ public enum Identifier {
     public boolean isClosing() {
     	return this.isClosing;
     }
+    public boolean isMatching(Identifier open) {
+    	if(open.name().equals("BELLO") && this.name().equals("POOPAYE")) {
+    		return true;
+    	} else if(open.name().equals("ELLIPSEOPEN") && this.name().equals("ELLIPSECLOSE")) {
+    		return true;
+    	} else if(this.name().equals("SALAKA") && open.name().equals("UNDERWEAR")) {
+    		return true;
+    	}
+    	return false;
+    }
 }
