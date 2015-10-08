@@ -15,7 +15,9 @@ public enum Identifier {
 	SALAKA("salaka", false, true, false), //else
 	STUPA("stupa", false, false, false), //break
 	BECOMES("=", false, false, false),
-	EQUALS("==", false, false, false);
+	EQUALS("==", false, false, false),
+	NUMBER("", false, false, false),
+	IDENTITY("", false, false, false);
 	
 	private String value;
 	private boolean isOpener;
@@ -39,6 +41,9 @@ public enum Identifier {
     }
     public boolean isClosing() {
     	return this.isClosing;
+    }
+    public boolean needsClosing() {
+    	return this.needsClosing;
     }
     public boolean isMatching(Identifier open) {
     	if(open.name().equals("BELLO") && this.name().equals("POOPAYE")) {
