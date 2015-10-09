@@ -32,4 +32,8 @@ public class Token {
 	public Identifier getIdentifier() {
 		return this.identifier;
 	}
+	
+	public int getLineNumber() {
+		return this.lineNumber;
+	}
 }

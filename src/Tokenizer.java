@@ -13,7 +13,7 @@ public class Tokenizer {
 	private static int lineCounter = 0;
 	private static int charCounter = 0;
 	
-	public static void main(String [] args) {
+	public static void main(String [] args) throws Exception {
 		
 		identifiersMap = fillHashmap();
 		
@@ -47,6 +47,8 @@ public class Tokenizer {
             for (Token t : tokenList) {
             	t.printToken();
             }
+
+            isAllClosed();
         }
         catch(FileNotFoundException ex) {
             System.out.println("Unable to open file '" + fileName + "'");
@@ -56,37 +58,13 @@ public class Tokenizer {
         }
     }
 	
-	public static void Tokenize(String isIn) {
+	public static void Tokenize(String isIn) throws Exception {
 		//map[isIn.toLowerCase()];
 		if (identifiersMap.containsKey(isIn)) {
 			Identifier i = identifiersMap.get(isIn);
 			Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get(isIn), level);
         	tokenList.add(t);
-			if (i.isOpener()) {
-				if(i.name().equals("QUOTE") && stack.peek() != null && stack.peek().getIdentifier().name().equals("QUOTE")) {
-        			stack.pop();
-        			level--;
-        		} else {
-        			stack.push(t);
-        			level++;
-        		}
-			} else if (i.isClosing()) {
-				Token openToken = stack.pop();
-				if (i.isMatching(openToken.getIdentifier())) {
-					t.setPartner(openToken);
-					openToken.setPartner(t);
-				} else if(openToken.getIdentifier().needsClosing()) {
-					Token newOpenToken = stack.pop();
-					level--;
-					if (i.isMatching(newOpenToken.getIdentifier())) {
-    					t.setPartner(newOpenToken);
-    					newOpenToken.setPartner(t);
-    				} else {
-    					System.out.println("BEEDOOBEEDOO");
-    				}
-				}
-				level--;
-			}
+			findPartner(t, i);
 		}
 		else {
 			try {  
@@ -99,9 +77,46 @@ public class Tokenizer {
 				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("identifier"), level);
 				tokenList.add(t);
 			}  
-		}
-		
+		}	
     }
+	
+	public static void findPartner(Token t, Identifier i) throws Exception {
+		if (i.isOpener()) {
+			if(i.name().equals("QUOTE") && stack.peek() != null && stack.peek().getIdentifier().name().equals("QUOTE")) {
+    			stack.pop();
+    			level--;
+    		} else {
+    			stack.push(t);
+    			level++;
+    		}
+		} else if (i.isClosing()) {
+			Token openToken = stack.pop();
+			if (i.isMatching(openToken.getIdentifier())) {
+				t.setPartner(openToken);
+				openToken.setPartner(t);
+			} else if(!openToken.getIdentifier().needsClosing()) {
+				Token newOpenToken = stack.pop();
+				level--;
+				if (i.isMatching(newOpenToken.getIdentifier())) {
+					t.setPartner(newOpenToken);
+					newOpenToken.setPartner(t);
+				}
+			} else {
+				throw new Exception("BEEDOOBEEDOO - No closing for " + openToken.getIdentifier() + " detected at line " + openToken.getLineNumber());
+			}
+			level--;
+		}
+	}
+	
+	public static boolean isAllClosed() throws Exception {
+		while(!stack.isEmpty()) {
+			Token t = stack.pop();
+			if (t.getIdentifier().needsClosing()) {
+				throw new Exception("BEEDOOBEEDOO - Necessary closing avoided");
+			}
+		}
+		return true;
+	}
 	
 	public static HashMap<String, Identifier> fillHashmap() {
 		System.out.println("Initializing");
@@ -112,9 +127,6 @@ public class Tokenizer {
 		for(Entry<String, Identifier> entry : hm.entrySet()) {
 		    String key = entry.getKey();
 		    Identifier value = entry.getValue();
-
-		    // do what you have to do here
-		    // In your case, an other loop.
 		}
 		return hm;
 	}
