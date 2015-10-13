@@ -1,3 +1,4 @@
+package tokenizer;
 
 public enum Identifier {
 	ELLIPSEOPEN("(", true, false, true),

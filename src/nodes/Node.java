@@ -2,7 +2,7 @@ package nodes;
 
 import java.util.List;
 
-import tokens.Token;
+import tokenizer.Token;
 
 public abstract class Node {
 	private Node next;

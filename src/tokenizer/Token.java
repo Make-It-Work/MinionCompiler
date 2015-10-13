@@ -1,3 +1,4 @@
+package tokenizer;
 
 public class Token {
 	private int lineNumber;
