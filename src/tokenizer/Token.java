@@ -7,8 +7,10 @@ public class Token {
 	private Identifier identifier;
 	private int level;
 	private Token partner;
+	private Token previous;
+	private Token next;
 	
-	public Token(int lineNumber, int linePosition, String content, Identifier identifier, int level) {
+	public Token(int lineNumber, int linePosition, String content, Identifier identifier, int level, Token previous) {
 		this.lineNumber = lineNumber;
 		this.linePosition = linePosition;
 		this.content = content;
@@ -36,5 +38,9 @@ public class Token {
 	
 	public int getLineNumber() {
 		return this.lineNumber;
+	}
+	
+	public void setNext(Token next) {
+		this.next = next;
 	}
 }

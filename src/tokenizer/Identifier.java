@@ -18,7 +18,8 @@ public enum Identifier {
 	BECOMES("=", false, false, false),
 	EQUALS("==", false, false, false),
 	NUMBER("", false, false, false),
-	IDENTITY("", false, false, false);
+	IDENTITY("", false, false, false),
+	SEMICOLON(";", false, false, false);
 	
 	private String value;
 	private boolean isOpener;

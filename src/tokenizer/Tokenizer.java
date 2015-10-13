@@ -4,15 +4,20 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map.Entry;
 
+import compiler.Compiler;
+
 public class Tokenizer {
-	private static ArrayList<Token> tokenList = new ArrayList<Token>();
+	private static LinkedList<Token> tokenList = new LinkedList<Token>();
 	private static Deque<Token> stack = new ArrayDeque<Token>();
 	private static HashMap<String, Identifier> identifiersMap;
 	private static int level = 0;
 	private static int lineCounter = 0;
 	private static int charCounter = 0;
+	static Token previous = null;
+    static Token first = null;
 	
 	public static void main(String [] args) throws Exception {
 		
@@ -45,11 +50,10 @@ public class Tokenizer {
             // Always close files.
             bufferedReader.close();
             
-            for (Token t : tokenList) {
-            	t.printToken();
-            }
-
             isAllClosed();
+            
+            Compiler c = new Compiler(tokenList);
+            c.toString();
         }
         catch(FileNotFoundException ex) {
             System.out.println("Unable to open file '" + fileName + "'");
@@ -63,20 +67,41 @@ public class Tokenizer {
 		//map[isIn.toLowerCase()];
 		if (identifiersMap.containsKey(isIn)) {
 			Identifier i = identifiersMap.get(isIn);
-			Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get(isIn), level);
+			Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get(isIn), level, previous);
+			if(first == null) {
+				first = t;
+			}
         	tokenList.add(t);
 			findPartner(t, i);
+			if(previous != null) {
+				previous.setNext(t);
+			}
+			previous = t;
 		}
 		else {
 			try {  
-				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("number"), level);
-			    double d = Double.parseDouble(isIn);  
+				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("number"), level, previous);
+			    double d = Double.parseDouble(isIn);
+			    if(first == null) {
+					first = t;
+				}
 			    tokenList.add(t);
+			    if(previous!=null){
+			    previous.setNext(t);
+			    }
+			    previous = t;
 			}  
 			catch(NumberFormatException nfe)  
 			{  
-				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("identifier"), level);
+				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("identifier"), level, previous);
+				if(first == null) {
+					first = t;
+				}
 				tokenList.add(t);
+				if(previous != null) {
+				previous.setNext(t);
+				}
+				previous = t;
 			}  
 		}	
     }

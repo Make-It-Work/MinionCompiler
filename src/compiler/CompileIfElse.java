@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import tokenizer.Token;
 
-public class CompileDoWhile extends CompiledStatement{
+public class CompileIfElse extends CompiledStatement{
 
 	@Override
 	boolean isMatch(LinkedList<Token> currentToken) {
