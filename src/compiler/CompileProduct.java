@@ -12,4 +12,10 @@ public class CompileProduct extends CompiledStatement {
 		return false;
 	}
 
+	@Override
+	CompiledStatement copy() {
+		// TODO Auto-generated method stub
+		return new CompileProduct();
+	}
+
 }
