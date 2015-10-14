@@ -17,9 +17,14 @@ public enum Identifier {
 	STUPA("stupa", false, false, false), //break
 	BECOMES("=", false, false, false),
 	EQUALS("==", false, false, false),
+	PLUS("+", false, false, false),
+	MINUS("-", false, false, false),
+	DIVIDE("/", false, false, false),
+	TIMES("*", false, false, false),
 	NUMBER("", false, false, false),
 	IDENTITY("", false, false, false),
-	SEMICOLON(";", false, false, false);
+	SEMICOLON(";", false, false, false),
+	STRING("", false, false, false);
 	
 	private String value;
 	private boolean isOpener;

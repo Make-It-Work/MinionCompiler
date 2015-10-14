@@ -1,8 +1,9 @@
 package compiler;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import nodes.Node;
+import tokenizer.Identifier;
 import tokenizer.Token;
 
 public class CompilePlus extends CompiledStatement{
@@ -11,7 +12,7 @@ public class CompilePlus extends CompiledStatement{
 	public
 	boolean isMatch(Token currentToken) {
 		// TODO Auto-generated method stub
-		return false;
+		return currentToken.getIdentifier().equals(Identifier.PLUS);
 	}
 
 	@Override
@@ -21,7 +22,7 @@ public class CompilePlus extends CompiledStatement{
 	}
 
 	@Override
-	public ArrayList<Node> compile(Token currentToken) {
+	public LinkedList<Node> compile(Compiler compiler) {
 		// TODO Auto-generated method stub
 		return null;
 	}

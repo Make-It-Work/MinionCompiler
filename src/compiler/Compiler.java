@@ -10,11 +10,12 @@ import tokenizer.Token;
 public class Compiler {
 	
 	protected ArrayList<Token> tokens;
-	protected ArrayList<Node> outPut;
-	protected Token currentToken;
+	protected LinkedList<Node> outPut;
+	public Token currentToken;
 	
 	public Compiler(ArrayList<Token> tokens) {
 		this.tokens = tokens;
+		this.outPut = new LinkedList<Node>();
 		compile();
 	}
 	
@@ -28,7 +29,10 @@ public class Compiler {
 		currentToken = tokens.get(0);
 		while(currentToken.hasNext()) {
 			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
-			ArrayList<Node> csCompiled = cs.compile(currentToken);
+			if (cs != null) {
+				LinkedList<Node> csCompiled = cs.compile(this);
+				this.outPut.addAll(csCompiled);
+			}
 			currentToken = currentToken.getNext();
 		}
 		
@@ -39,7 +43,7 @@ public class Compiler {
 		
 	}
 	
-	public ArrayList<Node> getOutput()
+	public LinkedList<Node> getOutput()
 	{
 		return outPut;
 	}

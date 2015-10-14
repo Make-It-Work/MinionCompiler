@@ -5,7 +5,8 @@ import nodes.Node;
 import tokenizer.Token;
 
 public abstract class CompiledStatement {
-	public abstract ArrayList<Node> compile(Token currentToken);
+	protected LinkedList<Node> output = new LinkedList<Node>();
+	public abstract LinkedList<Node> compile(Compiler compiler);
 	public abstract boolean isMatch(Token currentToken);
 	abstract CompiledStatement copy();
 }

@@ -1,6 +1,6 @@
 package compiler;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import nodes.ConditionalJump;
 import nodes.DoNothing;
@@ -25,12 +25,12 @@ public class CompileWhile extends CompiledStatement{
 
 
 	@Override
-	public ArrayList<Node> compile(Token currentToken) {
-		ArrayList<Node> compiledNodes = new ArrayList<Node>();
+	public LinkedList<Node> compile(Compiler compiler) {
+		LinkedList<Node> compiledNodes = new LinkedList<Node>();
 		int level = 0;
 
-		ArrayList<Node> compiledCondition = new ArrayList<Node>();
-		ArrayList<Node> compiledBody = new ArrayList<Node>();
+		LinkedList<Node> compiledCondition = new LinkedList<Node>();
+		LinkedList<Node> compiledBody = new LinkedList<Node>();
 		
 		//first we start with a do nothing node
 		DoNothing nothingStart = new DoNothing();
@@ -49,12 +49,12 @@ public class CompileWhile extends CompiledStatement{
 		compiledNodes.add(nothingDone);
 		
 		
-		while(currentToken.hasNext())
+		while(compiler.currentToken.hasNext())
 		{
-			currentToken.printToken();
-			if(currentToken.getIdentifier().needsClosing())
+			compiler.currentToken.printToken();
+			if(compiler.currentToken.getIdentifier().needsClosing())
 				level++;
-			else if(currentToken.getIdentifier().isClosing())
+			else if(compiler.currentToken.getIdentifier().isClosing())
 				level--;
 			if(level > 0){//condition or body
 				if(compiledCondition == null){
@@ -65,7 +65,7 @@ public class CompileWhile extends CompiledStatement{
 			}
 			
 			
-			currentToken = currentToken.getNext();
+			compiler.currentToken = compiler.currentToken.getNext();
 		}
 
 		ifJump.setTrueNode(nothingTrue);
