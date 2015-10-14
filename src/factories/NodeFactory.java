@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import compiler.CompiledStatement;
 import tokenizer.Token;
+import virtualMachine.Variable;
 import nodes.Node;
 
 public class NodeFactory {
@@ -36,14 +37,17 @@ public class NodeFactory {
 		return createNode(nodeType, "", null);
 	}
 	
-	public static final Node createNode(String nodeType, String functionIdentifier, List<Token> parameters) {
+	public static final Node createNode(String nodeType, String functionIdentifier, List<Variable> parameters) {
 		for(Entry<String, Node> entry : nodes.entrySet()) {
 		    String key = entry.getKey();
 		    Node node = entry.getValue();
 		    
 		    if(node.isMatch(nodeType)) {
 		    	System.out.println("FoundMatch");
-		    	return node.copy();
+		    	Node n = node.copy();
+		    	n.setParameters(parameters);
+		    	n.setIdentifier(functionIdentifier);
+		    	return n;
 		    	//Doe iets
 		    }
 		}
