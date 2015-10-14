@@ -40,6 +40,10 @@ public class Token {
 		return this.lineNumber;
 	}
 	
+	public String getValue() {
+		return this.content;
+	}
+	
 	public void setNext(Token next) {
 		this.next = next;
 	}

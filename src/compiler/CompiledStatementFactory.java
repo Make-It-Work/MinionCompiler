@@ -20,12 +20,13 @@ public class CompiledStatementFactory {
 		}
 	}
 	
-	public static final void createStatement(Token currentToken) {
+	public static final CompiledStatement createStatement(Token currentToken) {
 		for (Entry<String, CompiledStatement> cs : statements.entrySet()) {
 			if (cs.getValue().isMatch(currentToken)) {
 				System.out.println("Found Match");
-				return;
+				return cs.getValue().copy();
 			}
 		}
+		return null;
 	}
 }

@@ -1,5 +1,8 @@
 package compiler;
 
+import java.util.ArrayList;
+
+import nodes.Node;
 import tokenizer.Token;
 
 public class CompileDoWhile extends CompiledStatement{
@@ -15,6 +18,12 @@ public class CompileDoWhile extends CompiledStatement{
 	CompiledStatement copy() {
 		// TODO Auto-generated method stub
 		return new CompileDoWhile();
+	}
+
+	@Override
+	public ArrayList<Node> compile(Token currentToken) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

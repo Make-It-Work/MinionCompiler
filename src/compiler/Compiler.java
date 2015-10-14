@@ -3,6 +3,7 @@ package compiler;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import factories.NodeFactory;
 import nodes.Node;
 import tokenizer.Token;
 
@@ -23,9 +24,11 @@ public class Compiler {
 //			Token end
 			)
 	{
+		outPut.add(NodeFactory.createNode("DoNothing"));
 		currentToken = tokens.get(0);
 		while(currentToken.hasNext()) {
-			CompiledStatementFactory.createStatement(currentToken);
+			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
+			ArrayList<Node> csCompiled = cs.compile(currentToken);
 			currentToken = currentToken.getNext();
 		}
 		

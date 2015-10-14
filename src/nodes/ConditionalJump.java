@@ -1,5 +1,6 @@
 package nodes;
 
+
 public class ConditionalJump extends Node {
 
 	private boolean conditionResult;
@@ -31,6 +32,20 @@ public class ConditionalJump extends Node {
 	public void accept(NodeVisitor visitor) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public boolean isMatch(String nodeType) {
+		// TODO Auto-generated method stub
+		return nodeType.equals("ConditionalJump");
+	}
+
+
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return new ConditionalJump();
 	}
 
 }

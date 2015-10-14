@@ -1,5 +1,8 @@
 package compiler;
 
+import java.util.ArrayList;
+
+import nodes.Node;
 import tokenizer.Token;
 
 public class CompileIfElse extends CompiledStatement{
@@ -15,6 +18,12 @@ public class CompileIfElse extends CompiledStatement{
 	CompiledStatement copy() {
 		// TODO Auto-generated method stub
 		return new CompileIfElse();
+	}
+
+	@Override
+	public ArrayList<Node> compile(Token currentToken) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

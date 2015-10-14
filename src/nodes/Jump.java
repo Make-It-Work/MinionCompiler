@@ -1,5 +1,6 @@
 package nodes;
 
+
 public class Jump extends Node {
 
 	private Node jumpNode;
@@ -18,6 +19,18 @@ public class Jump extends Node {
 	public void accept(NodeVisitor visitor) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean isMatch(String nodeType) {
+		// TODO Auto-generated method stub
+		return nodeType.equals("Jump");
+	}
+
+	@Override
+	public Node copy() {
+		// TODO Auto-generated method stub
+		return new Jump();
 	}
 
 }

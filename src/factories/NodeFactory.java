@@ -1,0 +1,58 @@
+package factories;
+
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ServiceLoader;
+import java.util.Map.Entry;
+
+import compiler.CompiledStatement;
+import tokenizer.Token;
+import nodes.Node;
+
+public class NodeFactory {
+	private static final Map<String, Node> nodes;
+	private static final ServiceLoader<Node> loader;
+	
+	static {
+		nodes = new HashMap<String, Node>();
+		loader = ServiceLoader.load(Node.class);
+		
+		for (Node node : loader) {
+			nodes.put(node.getClass().getSimpleName(), node);
+		}
+	}
+//	
+//	public static final CompiledStatement create(final String name) {
+//		if (statements.containsKey(name)) {
+//			return statements.get(name).copy();
+//		}
+//		
+//		final String message = String.format("Command '%s' was not found, is the services file up to date?", name);
+//		throw new IllegalArgumentException(message);
+//	}
+	
+	public static final Node createNode(String nodeType) {
+		return createNode(nodeType, "", null);
+	}
+	
+	public static final Node createNode(String nodeType, String functionIdentifier, List<Token> parameters) {
+		for(Entry<String, Node> entry : nodes.entrySet()) {
+		    String key = entry.getKey();
+		    Node node = entry.getValue();
+		    
+		    if(node.isMatch(nodeType)) {
+		    	System.out.println("FoundMatch");
+		    	return node.copy();
+		    	//Doe iets
+		    }
+		}
+		try {
+			throw new Exception("BEEDOOBEEDOO - NodeType doesnt exist");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

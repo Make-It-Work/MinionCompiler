@@ -4,3 +4,7 @@
 /compiler/
 /tokenizer/
 /factories/
+/META-INF/
+/virtualMachine/
+/commands/
+/command/
