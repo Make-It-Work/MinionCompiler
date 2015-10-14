@@ -31,7 +31,7 @@ public class CompileConstant extends CompiledStatement {
 	@Override
 	CompiledStatement copy() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CompileConstant();
 	}
 
 }

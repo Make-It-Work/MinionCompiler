@@ -47,9 +47,9 @@ public class Tokenizer {
                 }
             }
             
-            for (Token t : tokenList) {
-            	t.printToken();
-            }
+//            for (Token t : tokenList) {
+//            	t.printToken();
+//            }
 
             // Always close files.
             bufferedReader.close();
@@ -165,14 +165,9 @@ public class Tokenizer {
 	}
 	
 	public static HashMap<String, Identifier> fillHashmap() {
-		System.out.println("Initializing");
 		HashMap<String, Identifier> hm = new HashMap<String, Identifier>();
 		for(Identifier i : Identifier.values()) {
 			hm.put(i.toString(), i);
-		}
-		for(Entry<String, Identifier> entry : hm.entrySet()) {
-		    String key = entry.getKey();
-		    Identifier value = entry.getValue();
 		}
 		return hm;
 	}

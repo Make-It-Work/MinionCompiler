@@ -17,6 +17,11 @@ public enum Identifier {
 	STUPA("stupa", false, false, false), //break
 	BECOMES("=", false, false, false),
 	EQUALS("==", false, false, false),
+	NOTEQUALS("!=", false, false, false),
+	GREATERTHAN(">", false, false, false),
+	GREATERTHANEQUALS(">=", false, false, false),
+	LESSTHANEQUALS(">=", false, false, false),
+	LESSTHAN("<", false, false, false),
 	PLUS("+", false, false, false),
 	MINUS("-", false, false, false),
 	DIVIDE("/", false, false, false),

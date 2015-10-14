@@ -1,3 +1,4 @@
+compiler.CompileConstant
 compiler.CompiledDeclaration
 compiler.CompileDoWhile
 compiler.CompileFunction
@@ -6,6 +7,4 @@ compiler.CompileIfElse
 compiler.CompileIfGeneral
 compiler.CompileLValue
 compiler.CompileOperator
-compiler.CompilePlus
-compiler.CompileProduct
 compiler.CompileWhile

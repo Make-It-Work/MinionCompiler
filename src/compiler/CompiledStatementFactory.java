@@ -23,7 +23,6 @@ public class CompiledStatementFactory {
 	public static final CompiledStatement createStatement(Token currentToken) {
 		for (Entry<String, CompiledStatement> cs : statements.entrySet()) {
 			if (cs.getValue().isMatch(currentToken)) {
-				System.out.println("Found Match");
 				return cs.getValue().copy();
 			}
 		}
