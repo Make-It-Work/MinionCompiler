@@ -23,4 +23,10 @@ public class Add extends AbstractCommand {
 		}
 	}
 
+	@Override
+	AbstractCommand copy() {
+		// TODO Auto-generated method stub
+		return new Add();
+	}
+
 }

@@ -14,4 +14,10 @@ public class ReturnToVariable extends AbstractCommand {
 		
 	}
 
+	@Override
+	AbstractCommand copy() {
+		// TODO Auto-generated method stub
+		return new ReturnToVariable();
+	}
+
 }

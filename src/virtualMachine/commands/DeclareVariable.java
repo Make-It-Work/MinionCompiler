@@ -21,4 +21,10 @@ public class DeclareVariable extends AbstractCommand {
 		}
 	}
 
+	@Override
+	AbstractCommand copy() {
+		// TODO Auto-generated method stub
+		return new DeclareVariable();
+	}
+
 }

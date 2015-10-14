@@ -13,4 +13,10 @@ public class VariableToReturn extends AbstractCommand {
 		vm.returnValue = vm.variables.get(parameters.get(0).getWaarde().toString());
 	}
 
+	@Override
+	AbstractCommand copy() {
+		// TODO Auto-generated method stub
+		return new VariableToReturn();
+	}
+
 }

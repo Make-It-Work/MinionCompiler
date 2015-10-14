@@ -13,4 +13,10 @@ public class ConstantToReturn extends AbstractCommand {
 		vm.returnValue = parameters.get(0);
 	}
 
+	@Override
+	AbstractCommand copy() {
+		// TODO Auto-generated method stub
+		return new ConstantToReturn();
+	}
+
 }
