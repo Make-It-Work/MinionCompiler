@@ -1,6 +1,6 @@
 package compiler;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import nodes.Node;
 import tokenizer.Token;
@@ -21,7 +21,7 @@ public class CompileIf extends CompiledStatement{
 	}
 
 	@Override
-	public ArrayList<Node> compile(Token currentToken) {
+	public LinkedList<Node> compile(Compiler compiler) {
 		// TODO Auto-generated method stub
 		return null;
 	}

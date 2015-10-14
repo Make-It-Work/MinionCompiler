@@ -58,4 +58,7 @@ public class Token {
 	public Token getNext() {
 		return this.next;
 	}
+	public Token getPrevious() {
+		return this.previous;
+	}
 }

@@ -46,6 +46,10 @@ public class Tokenizer {
                     charCounter += item.length();
                 }
             }
+            
+            for (Token t : tokenList) {
+            	t.printToken();
+            }
 
             // Always close files.
             bufferedReader.close();
@@ -65,46 +69,60 @@ public class Tokenizer {
 	
 	public static void Tokenize(String isIn) throws Exception {
 		//map[isIn.toLowerCase()];
-		if (identifiersMap.containsKey(isIn)) {
-			Identifier i = identifiersMap.get(isIn);
-			Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get(isIn), level, previous);
+		if(stack.peek() != null && stack.peek().getIdentifier().equals(Identifier.QUOTE) && !isIn.equals("'")) {
+			Identifier i = Identifier.STRING;
+			Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
 			if(first == null) {
 				first = t;
 			}
-        	tokenList.add(t);
-			findPartner(t, i);
+			tokenList.add(t);
 			if(previous != null) {
-				previous.setNext(t);
+			previous.setNext(t);
 			}
 			previous = t;
 		}
 		else {
-			try {
-				Identifier i = Identifier.NUMBER;
-				Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
-			    double d = Double.parseDouble(isIn);
-			    if(first == null) {
-					first = t;
-				}
-			    tokenList.add(t);
-			    if(previous!=null){
-			    previous.setNext(t);
-			    }
-			    previous = t;
-			}  
-			catch(NumberFormatException nfe)  
-			{  
-				Identifier i = Identifier.IDENTITY;
-				Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
+			if (identifiersMap.containsKey(isIn)) {
+				Identifier i = identifiersMap.get(isIn);
+				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get(isIn), level, previous);
 				if(first == null) {
 					first = t;
 				}
-				tokenList.add(t);
+	        	tokenList.add(t);
+				findPartner(t, i);
 				if(previous != null) {
-				previous.setNext(t);
+					previous.setNext(t);
 				}
 				previous = t;
-			}  
+			}
+			else {
+				try {
+					Identifier i = Identifier.NUMBER;
+					Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
+				    double d = Double.parseDouble(isIn);
+				    if(first == null) {
+						first = t;
+					}
+				    tokenList.add(t);
+				    if(previous!=null){
+				    previous.setNext(t);
+				    }
+				    previous = t;
+				}  
+				catch(NumberFormatException nfe)  
+				{  
+					Identifier i = Identifier.IDENTITY;
+					Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
+					if(first == null) {
+						first = t;
+					}
+					tokenList.add(t);
+					if(previous != null) {
+					previous.setNext(t);
+					}
+					previous = t;
+				} 
+			}
 		}	
     }
 	

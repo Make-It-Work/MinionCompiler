@@ -6,6 +6,11 @@ public class Variable {
 	private Identifier type;
 	private Object waarde;
 	
+	public Variable (Identifier type, Object waarde) {
+		this.setType(type);
+		this.setWaarde(waarde);
+	}
+	
 	public Object getWaarde() {
 		if (type == Identifier.NUMBER) {
 			return (int) waarde;
