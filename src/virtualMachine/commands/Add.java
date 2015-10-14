@@ -6,7 +6,7 @@ import virtualMachine.Variable;
 import virtualMachine.VirtualMachine;
 import tokenizer.Identifier;
 
-public class AddCommand extends AbstractCommand {
+public class Add extends AbstractCommand {
 
 	@Override
 	void Execute(VirtualMachine vm, List<Variable> parameters) {
