@@ -1,13 +1,12 @@
 package compiler;
 
-import java.util.LinkedList;
-
 import tokenizer.Token;
 
 public class CompileIfGeneral extends CompiledStatement {
 
 	@Override
-	boolean isMatch(LinkedList<Token> currentToken) {
+	public
+	boolean isMatch(Token currentToken) {
 		// TODO Auto-generated method stub
 		return false;
 	}

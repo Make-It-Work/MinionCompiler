@@ -2,8 +2,8 @@ package compiler;
 import java.util.*;
 import tokenizer.Token;
 
-abstract class CompiledStatement {
+public abstract class CompiledStatement {
 
-	abstract boolean isMatch(LinkedList<Token> currentToken);
+	public abstract boolean isMatch(Token currentToken);
 	abstract CompiledStatement copy();
 }

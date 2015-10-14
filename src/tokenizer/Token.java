@@ -43,4 +43,15 @@ public class Token {
 	public void setNext(Token next) {
 		this.next = next;
 	}
+	
+	public boolean hasNext() {
+		if (this.next != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Token getNext() {
+		return this.next;
+	}
 }

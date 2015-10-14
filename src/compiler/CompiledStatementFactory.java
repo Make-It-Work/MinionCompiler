@@ -2,7 +2,10 @@ package compiler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ServiceLoader;
+
+import tokenizer.Token;
 
 public class CompiledStatementFactory {
 	private static final Map<String, CompiledStatement> statements;
@@ -17,12 +20,12 @@ public class CompiledStatementFactory {
 		}
 	}
 	
-	public static final CompiledStatement create(final String name) {
-		if (statements.containsKey(name)) {
-			return statements.get(name).copy();
+	public static final void createStatement(Token currentToken) {
+		for (Entry<String, CompiledStatement> cs : statements.entrySet()) {
+			if (cs.getValue().isMatch(currentToken)) {
+				System.out.println("Found Match");
+				return;
+			}
 		}
-		
-		final String message = String.format("Command '%s' was not found, is the services file up to date?", name);
-		throw new IllegalArgumentException(message);
 	}
 }

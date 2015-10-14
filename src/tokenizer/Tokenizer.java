@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import compiler.Compiler;
 
 public class Tokenizer {
-	private static LinkedList<Token> tokenList = new LinkedList<Token>();
+	private static ArrayList<Token> tokenList = new ArrayList<Token>();
 	private static Deque<Token> stack = new ArrayDeque<Token>();
 	private static HashMap<String, Identifier> identifiersMap;
 	private static int level = 0;
@@ -79,8 +79,9 @@ public class Tokenizer {
 			previous = t;
 		}
 		else {
-			try {  
-				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("number"), level, previous);
+			try {
+				Identifier i = Identifier.NUMBER;
+				Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
 			    double d = Double.parseDouble(isIn);
 			    if(first == null) {
 					first = t;
@@ -93,7 +94,8 @@ public class Tokenizer {
 			}  
 			catch(NumberFormatException nfe)  
 			{  
-				Token t = new Token(lineCounter, charCounter, isIn, identifiersMap.get("identifier"), level, previous);
+				Identifier i = Identifier.IDENTITY;
+				Token t = new Token(lineCounter, charCounter, isIn, i, level, previous);
 				if(first == null) {
 					first = t;
 				}

@@ -8,10 +8,11 @@ import tokenizer.Token;
 
 public class Compiler {
 	
-	protected LinkedList<Token> tokens;
+	protected ArrayList<Token> tokens;
 	protected ArrayList<Node> outPut;
+	protected Token currentToken;
 	
-	public Compiler(LinkedList<Token> tokens) {
+	public Compiler(ArrayList<Token> tokens) {
 		this.tokens = tokens;
 		compile();
 	}
@@ -22,7 +23,12 @@ public class Compiler {
 //			Token end
 			)
 	{
-		tokens.getFirst().printToken();
+		currentToken = tokens.get(0);
+		while(currentToken.hasNext()) {
+			CompiledStatementFactory.createStatement(currentToken);
+			currentToken = currentToken.getNext();
+		}
+		
 	}
 	
 	public void getLastToken()
