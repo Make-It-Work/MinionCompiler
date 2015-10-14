@@ -34,5 +34,9 @@ public abstract class Node {
 		// TODO Auto-generated method stub
 		this.functionIdentifier = functionIdentifier;
 	}
+	
+	public String getIdentifier() {
+		return this.functionIdentifier;
+	}
 
 }

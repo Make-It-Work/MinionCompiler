@@ -47,9 +47,11 @@ public class Tokenizer {
                 }
             }
             
-//            for (Token t : tokenList) {
-//            	t.printToken();
-//            }
+            ArrayList<Token> tl = tokenList;
+            
+            for (Token t : tokenList) {
+            	t.printToken();
+            }
 
             // Always close files.
             bufferedReader.close();
@@ -75,11 +77,14 @@ public class Tokenizer {
 			if(first == null) {
 				first = t;
 			}
-			tokenList.add(t);
-			if(previous != null) {
-			previous.setNext(t);
+			findPartner(t, i);
+			if(!t.getIdentifier().equals(Identifier.QUOTE)) {
+				tokenList.add(t);
+				if(previous != null) {
+					previous.setNext(t);
+				}
+				previous = t;
 			}
-			previous = t;
 		}
 		else {
 			if (identifiersMap.containsKey(isIn)) {
@@ -88,12 +93,15 @@ public class Tokenizer {
 				if(first == null) {
 					first = t;
 				}
-	        	tokenList.add(t);
+
 				findPartner(t, i);
-				if(previous != null) {
-					previous.setNext(t);
+				if(!t.getIdentifier().equals(Identifier.QUOTE)) {
+					tokenList.add(t);
+					if(previous != null) {
+						previous.setNext(t);
+					}
+					previous = t;
 				}
-				previous = t;
 			}
 			else {
 				try {
@@ -103,11 +111,15 @@ public class Tokenizer {
 				    if(first == null) {
 						first = t;
 					}
-				    tokenList.add(t);
-				    if(previous!=null){
-				    previous.setNext(t);
-				    }
-				    previous = t;
+
+					findPartner(t, i);
+				    if(!t.getIdentifier().equals(Identifier.QUOTE)) {
+						tokenList.add(t);
+						if(previous != null) {
+							previous.setNext(t);
+						}
+						previous = t;
+					}
 				}  
 				catch(NumberFormatException nfe)  
 				{  
@@ -116,11 +128,15 @@ public class Tokenizer {
 					if(first == null) {
 						first = t;
 					}
-					tokenList.add(t);
-					if(previous != null) {
-					previous.setNext(t);
+
+					findPartner(t, i);
+					if(!t.getIdentifier().equals(Identifier.QUOTE)) {
+						tokenList.add(t);
+						if(previous != null) {
+							previous.setNext(t);
+						}
+						previous = t;
 					}
-					previous = t;
 				} 
 			}
 		}	

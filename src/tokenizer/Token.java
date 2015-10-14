@@ -16,6 +16,7 @@ public class Token {
 		this.content = content;
 		this.identifier = identifier;
 		this.level = level;
+		this.previous = previous;
 	}
 	
 	public void setPartner(Token partner) {

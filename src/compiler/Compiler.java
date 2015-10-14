@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import factories.NodeFactory;
 import nodes.Node;
 import tokenizer.Token;
+import virtualMachine.VirtualMachine;
 
 public class Compiler {
 	
@@ -35,6 +36,9 @@ public class Compiler {
 			}
 			currentToken = currentToken.getNext();
 		}
+		System.out.println("bah");
+		VirtualMachine vm = new VirtualMachine();
+		vm.Run(outPut);
 		
 	}
 	

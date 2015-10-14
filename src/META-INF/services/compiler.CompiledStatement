@@ -1,3 +1,4 @@
+compiler.CompiledAssignment
 compiler.CompileConstant
 compiler.CompiledDeclaration
 compiler.CompileDoWhile
