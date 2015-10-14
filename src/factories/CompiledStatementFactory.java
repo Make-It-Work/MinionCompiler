@@ -38,7 +38,6 @@ public class CompiledStatementFactory {
 		    CompiledStatement cs = entry.getValue();
 		    
 		    if(cs.isMatch(currentToken)) {
-		    	System.out.println("FoundMatch");
 		    	return;
 		    	//Doe iets
 		    }

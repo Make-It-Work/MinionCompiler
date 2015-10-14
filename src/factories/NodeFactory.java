@@ -43,7 +43,6 @@ public class NodeFactory {
 		    Node node = entry.getValue();
 		    
 		    if(node.isMatch(nodeType)) {
-		    	System.out.println("FoundMatch");
 		    	Node n = node.copy();
 		    	n.setParameters(parameters);
 		    	n.setIdentifier(functionIdentifier);
