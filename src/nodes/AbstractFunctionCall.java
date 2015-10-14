@@ -7,6 +7,14 @@ public abstract class AbstractFunctionCall extends Node {
 
 	protected List<Variable> parameters;
 	
+	public List<Variable> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(List<Variable> parameters) {
+		this.parameters = parameters;
+	}
+
 	public AbstractFunctionCall() {
 		functionIdentifier = "";
 		parameters = new ArrayList<Variable>();
