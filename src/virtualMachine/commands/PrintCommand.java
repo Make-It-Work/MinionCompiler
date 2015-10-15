@@ -14,11 +14,14 @@ public class PrintCommand extends AbstractCommand {
 		Variable left = vm.variables.get(parameters.get(0).getWaarde());
 		Variable right = vm.variables.get(parameters.get(1).getWaarde());
 		String printval;
-		if(left.getType().equals(Identifier.NUMBER) && right.getType().equals(Identifier.NUMBER)) {
-			printval = Integer.toString(((int)left.getWaarde()) + ((int)right.getWaarde()));
-		} else {
-			printval = left.getWaarde().toString() + right.getWaarde().toString();
-		}
+		if(right != null)
+			if(left.getType().equals(Identifier.NUMBER) && right.getType().equals(Identifier.NUMBER)) {
+				printval = Integer.toString(((int)left.getWaarde()) + ((int)right.getWaarde()));
+			} else {
+				printval = left.getWaarde().toString() + right.getWaarde().toString();
+			}
+		else
+			printval = left.getWaarde().toString();
 		System.out.println(printval);
 	}
 
