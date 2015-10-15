@@ -8,7 +8,7 @@ public enum Identifier {
 	POOPAYE("poopaye", false, true, false), //}
 	PWEDA("pweda", true, false, false), //Comment
 	TOM("tom", false, false, false), //Print
-	TYELAS("tyelas", false, false, false), //Function
+	TYELAS("tyelas", false, false, false), //while
 	PARATU("paratu", false, false, false), //Return
 	POKA("poka", false, false, false), //var
 	PARA("para", false, false, false), //for
@@ -20,7 +20,7 @@ public enum Identifier {
 	NOTEQUALS("!=", false, false, false),
 	GREATERTHAN(">", false, false, false),
 	GREATERTHANEQUALS(">=", false, false, false),
-	LESSTHANEQUALS(">=", false, false, false),
+	LESSTHANEQUALS("<=", false, false, false),
 	LESSTHAN("<", false, false, false),
 	PLUS("+", false, false, false),
 	MINUS("-", false, false, false),
