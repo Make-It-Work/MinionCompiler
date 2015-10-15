@@ -2,6 +2,7 @@ package compiler;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import factories.NodeFactory;
 import nodes.Node;
@@ -32,7 +33,7 @@ public class Compiler {
 			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
 			if (cs != null) {
 				LinkedList<Node> csCompiled = cs.compile(this);
-				this.outPut.addAll(csCompiled);
+				this.addAllToOutput(csCompiled);
 			}
 			currentToken = currentToken.getNext();
 		}
@@ -40,6 +41,17 @@ public class Compiler {
 		VirtualMachine vm = new VirtualMachine();
 		vm.Run(outPut);
 		
+	}
+	
+	private void addAllToOutput(List<Node> newNodes) {
+		for (Node newNode : newNodes) {
+			Node lastNode = outPut.getLast();
+			lastNode.setNext(newNode);
+			newNode.setPrevious(lastNode);
+			outPut.removeLast();
+			outPut.addLast(lastNode);
+			outPut.addLast(newNode);
+		}
 	}
 	
 	public void getLastToken()

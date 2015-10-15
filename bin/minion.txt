@@ -1,4 +1,4 @@
-poka number = 1 ;
+poka number = 1 + 2 ;
 poka string = ' Bello! ' ;
 underwear ( number == 1 ) bello
 tom ( string ) ;

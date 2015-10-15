@@ -1,6 +1,2 @@
-/compiler/
-/tokenizer/
-/virtualMachine/
-/META-INF/
-/factories/
 /nodes/
+/compiler/

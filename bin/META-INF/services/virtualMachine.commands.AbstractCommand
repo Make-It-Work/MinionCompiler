@@ -1,0 +1,5 @@
+virtualMachine.commands.Add
+virtualMachine.commands.ConstantToReturn
+virtualMachine.commands.DeclareVariable
+virtualMachine.commands.ReturnToVariable
+virtualMachine.commands.VariableToReturn

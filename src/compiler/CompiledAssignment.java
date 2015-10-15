@@ -18,15 +18,16 @@ public class CompiledAssignment extends CompiledStatement {
 		
 		//Compile alles tot aan je EOL
 		while (!compiler.currentToken.getNext().getIdentifier().equals(Identifier.SEMICOLON)) {
-			CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken.getNext());
+			compiler.currentToken = compiler.currentToken.getNext();
+			CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
 			output.addAll(cs.compile(compiler));
 			
 			ArrayList<Variable> parameters = new ArrayList<Variable>();
 			parameters.add(new Variable(varName.getIdentifier(), varName.getValue()));
 			
 			output.add(NodeFactory.createNode("DirectFunctionCall", "ReturnToValue", parameters));
-			compiler.currentToken = compiler.currentToken.getNext();
 		}
+		compiler.currentToken = compiler.currentToken.getNext();
 		return output;
 	}
 

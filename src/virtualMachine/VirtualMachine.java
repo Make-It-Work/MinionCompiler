@@ -13,10 +13,10 @@ public class VirtualMachine {
 	
 	public void Run(LinkedList<Node> list)
     {
-        Node currentNode = list.get(0);
+        Node currentNode = list.getFirst();
         NodeVisitor visitor = new NodeVisitor();
-        //while (currentNode != null)
-        //{
+        while (currentNode != null)
+        {
         	System.out.println(currentNode.getIdentifier());
 //        	AbstractFunctionCall action = (AbstractFunctionCall) currentNode;
 //        	if (action != null)
@@ -26,7 +26,8 @@ public class VirtualMachine {
 //            }
 //        	
         	currentNode.accept(visitor);
-            currentNode = visitor.getNextNode();
-        //}
+        	currentNode = currentNode.getNext();
+            //currentNode = visitor.getNextNode();
+        }
     }
 }

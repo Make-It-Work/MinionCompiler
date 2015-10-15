@@ -9,4 +9,15 @@ public abstract class CompiledStatement {
 	public abstract LinkedList<Node> compile(Compiler compiler);
 	public abstract boolean isMatch(Token currentToken);
 	abstract CompiledStatement copy();
+	
+	protected void addAllToOutput(List<Node> newNodes) {
+		for (Node newNode : newNodes) {
+			Node lastNode = output.getLast();
+			lastNode.setNext(newNode);
+			newNode.setPrevious(lastNode);
+			output.removeLast();
+			output.addLast(lastNode);
+			output.addLast(newNode);
+		}
+	}
 }

@@ -52,9 +52,9 @@ public class CompileOperator extends CompiledStatement{
 		
 		//Compileer de rechterkant (zet het al op de returnValue)
 		CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-		output.addAll(cs.compile(compiler));
+		addAllToOutput(cs.compile(compiler));
 		
-		//Pak de linkervalue van de returnValue (al gecompileerd)
+		//Pak de rechterValue van de returnValue (al gecompileerd)
 		ArrayList<Variable> parametersRighthand = new ArrayList<Variable>();
 		parametersRighthand.add(new Variable(Identifier.NUMBER,rightHandVariableName));
 		output.add(NodeFactory.createNode("DirectFunctionCall", "ReturnToVariable", parametersRighthand));

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
+import virtualMachine.commands.AbstractCommand;
+
 public class CommandFactory {
 	private static final Map<String, AbstractCommand> commands;
 	private static final ServiceLoader<AbstractCommand> loader;

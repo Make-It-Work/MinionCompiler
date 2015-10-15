@@ -6,6 +6,7 @@ import tokenizer.Token;
 import virtualMachine.Variable;
 
 public abstract class Node {
+	private Node previous;
 	private Node next;
 	protected List<Token> tokens;
 	protected String functionIdentifier;
@@ -18,6 +19,14 @@ public abstract class Node {
 	public void setNext(Node next)
 	{
 		this.next = next;
+	}
+	
+	public Node getPrevious() {
+		return this.previous;
+	}
+	
+	public void setPrevious(Node previous) {
+		this.previous = previous;
 	}
 	
 	public boolean hasNext()
