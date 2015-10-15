@@ -9,7 +9,7 @@ import virtualMachine.VirtualMachine;
 public class PrintCommand extends AbstractCommand {
 
 	@Override
-	void Execute(VirtualMachine vm, List<Variable> parameters) {
+	public void Execute(VirtualMachine vm, List<Variable> parameters) {
 
 		Variable left = vm.variables.get(parameters.get(0).getWaarde());
 		Variable right = vm.variables.get(parameters.get(1).getWaarde());
