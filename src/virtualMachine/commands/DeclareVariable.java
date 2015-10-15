@@ -8,7 +8,7 @@ import virtualMachine.VirtualMachine;
 public class DeclareVariable extends AbstractCommand {
 
 	@Override
-	void Execute(VirtualMachine vm, List<Variable> parameters) {
+	public void Execute(VirtualMachine vm, List<Variable> parameters) {
 		// TODO Auto-generated method stub
 		if (vm.variables.containsKey(parameters.get(0).getWaarde().toString())) {
 			try {

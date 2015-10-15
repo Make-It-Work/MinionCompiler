@@ -9,7 +9,7 @@ import tokenizer.Identifier;
 public class Add extends AbstractCommand {
 
 	@Override
-	void Execute(VirtualMachine vm, List<Variable> parameters) {
+	public void Execute(VirtualMachine vm, List<Variable> parameters) {
 		// TODO Auto-generated method stub
 		Object returnWaarde;
 		Variable left = vm.variables.get(parameters.get(0).getWaarde());
