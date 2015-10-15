@@ -1,2 +1,5 @@
 /nodes/
 /compiler/
+/tokenizer/
+/META-INF/
+/virtualMachine/

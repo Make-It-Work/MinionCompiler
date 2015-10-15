@@ -12,11 +12,13 @@ public abstract class CompiledStatement {
 	
 	protected void addAllToOutput(List<Node> newNodes) {
 		for (Node newNode : newNodes) {
-			Node lastNode = output.getLast();
-			lastNode.setNext(newNode);
-			newNode.setPrevious(lastNode);
-			output.removeLast();
-			output.addLast(lastNode);
+			if (!output.isEmpty()) {
+				Node lastNode = output.getLast();
+				lastNode.setNext(newNode);
+				newNode.setPrevious(lastNode);
+				output.removeLast();
+				output.addLast(lastNode);
+			}
 			output.addLast(newNode);
 		}
 	}

@@ -2,7 +2,8 @@ compiler.CompiledAssignment
 compiler.CompileConstant
 compiler.CompiledDeclaration
 compiler.CompileDoWhile
-compiler.CompileFunction
+compiler.CompileTom
+compiler.CompileIdentities
 compiler.CompileIf
 compiler.CompileIfElse
 compiler.CompileIfGeneral

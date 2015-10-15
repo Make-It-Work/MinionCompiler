@@ -20,7 +20,7 @@ public class CompiledAssignment extends CompiledStatement {
 		while (!compiler.currentToken.getNext().getIdentifier().equals(Identifier.SEMICOLON)) {
 			compiler.currentToken = compiler.currentToken.getNext();
 			CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-			output.addAll(cs.compile(compiler));
+			addAllToOutput(cs.compile(compiler));
 			
 			ArrayList<Variable> parameters = new ArrayList<Variable>();
 			parameters.add(new Variable(varName.getIdentifier(), varName.getValue()));
