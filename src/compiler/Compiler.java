@@ -29,7 +29,9 @@ public class Compiler {
 	{
 		outPut.add(NodeFactory.createNode("DoNothing"));
 		currentToken = tokens.get(0);
-		while(currentToken.hasNext()) {
+		
+		while(currentToken != null && currentToken.hasNext()) {
+			
 			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
 			if (cs != null) {
 				LinkedList<Node> csCompiled = cs.compile(this);
@@ -37,7 +39,7 @@ public class Compiler {
 			}
 			currentToken = currentToken.getNext();
 		}
-		System.out.println("bah");
+		
 		VirtualMachine vm = new VirtualMachine();
 		vm.Run(outPut);
 		
