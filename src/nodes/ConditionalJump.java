@@ -3,7 +3,6 @@ package nodes;
 
 public class ConditionalJump extends Node {
 
-	private boolean conditionResult;
 	private Node trueNode;
 	private Node falseNode;
 	

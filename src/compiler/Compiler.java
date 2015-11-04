@@ -30,14 +30,17 @@ public class Compiler {
 		outPut.add(NodeFactory.createNode("DoNothing"));
 		currentToken = tokens.get(0);
 		
-		while(currentToken != null && currentToken.hasNext()) {
+		while(currentToken != null) {
 			
 			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
 			if (cs != null) {
 				LinkedList<Node> csCompiled = cs.compile(this);
                 this.addAllToOutput(csCompiled);
+			}else{
+				System.out.println();
 			}
-			currentToken = currentToken.getNext();
+			if(currentToken != null && currentToken.hasNext())
+				currentToken = currentToken.getNext();
 		}
 
 		int counter = 0;

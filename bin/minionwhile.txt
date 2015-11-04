@@ -1,4 +1,0 @@
-tyelas ( number <= 4 ) bello
-tom ( number ) ;
-number = number + 1 ;
-poopaye

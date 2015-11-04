@@ -31,20 +31,21 @@ public class CompiledStatementFactory {
 //		throw new IllegalArgumentException(message);
 //	}
 	
-	public static final void createStatement(Token currentToken) {
+	public static final CompiledStatement createStatement(Token currentToken) {
 		//Map<String, CompiledStatement> check = statements;
 		for(Entry<String, CompiledStatement> entry : statements.entrySet()) {
 		    String key = entry.getKey();
 		    CompiledStatement cs = entry.getValue();
 		    
 		    if(cs.isMatch(currentToken)) {
-		    	return;
+		    	return cs;
 		    	//Doe iets
 		    }
-
 		    // do what you have to do here
 		    // In your case, an other loop.
 		}
+
+	    return null;
 	}
 	
 }

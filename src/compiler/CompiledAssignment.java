@@ -25,7 +25,7 @@ public class CompiledAssignment extends CompiledStatement {
 			ArrayList<Variable> parameters = new ArrayList<Variable>();
 			parameters.add(new Variable(varName.getIdentifier(), varName.getValue()));
 			
-			output.add(NodeFactory.createNode("DirectFunctionCall", "ReturnToValue", parameters));
+			output.add(NodeFactory.createNode("DirectFunctionCall", "ReturnToVariable", parameters));
 		}
 		compiler.currentToken = compiler.currentToken.getNext();
 		return output;

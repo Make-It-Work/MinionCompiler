@@ -29,7 +29,8 @@ public enum Identifier {
 	NUMBER("", false, false, false),
 	IDENTITY("", false, false, false),
 	SEMICOLON(";", false, false, false),
-	STRING("", false, false, false);
+	STRING("", false, false, false),
+	BOOL("", false, false, false);
 	
 	private String value;
 	private boolean isOpener;

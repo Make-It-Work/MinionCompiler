@@ -3,3 +3,5 @@ virtualMachine.commands.ConstantToReturn
 virtualMachine.commands.DeclareVariable
 virtualMachine.commands.ReturnToVariable
 virtualMachine.commands.VariableToReturn
+virtualMachine.commands.Equals
+virtualMachine.commands.PrintCommand

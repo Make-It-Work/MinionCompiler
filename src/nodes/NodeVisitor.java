@@ -1,7 +1,17 @@
 package nodes;
 
-public class NodeVisitor {
+import tokenizer.Identifier;
+import virtualMachine.VirtualMachine;
+
+public class NodeVisitor { 
+
 	private Node nextNode;
+	private VirtualMachine vm;
+	
+	public NodeVisitor(VirtualMachine vm)
+	{
+		this.vm = vm;
+	}
     
 	public void Visit(DoNothing node) {
 		nextNode = node.getNext();
@@ -12,7 +22,8 @@ public class NodeVisitor {
     }
     
     public void Visit(ConditionalJump node){
-    	nextNode = node.getNext();
+    	if(vm.returnValue.getType() == Identifier.BOOL)
+	    	nextNode = (vm.returnValue.getWaarde().equals("true")) ? nextNode = node.getTrueNode() : node.getFalseNode();
     }
     public void Visit(DirectFunctionCall node) {
     	nextNode = node.getNext();

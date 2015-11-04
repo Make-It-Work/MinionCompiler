@@ -5,7 +5,7 @@ import java.util.*;
 
 public abstract class AbstractFunctionCall extends Node {
 
-	protected List<Variable> parameters;
+	//protected List<Variable> parameters;
 	
 	public List<Variable> getParameters() {
 		return parameters;

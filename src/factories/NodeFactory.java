@@ -1,15 +1,14 @@
 package factories;
 
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.ServiceLoader;
 import java.util.Map.Entry;
+import java.util.ServiceLoader;
+import java.util.Set;
 
-import compiler.CompiledStatement;
-import tokenizer.Token;
-import virtualMachine.Variable;
 import nodes.Node;
+import virtualMachine.Variable;
 
 public class NodeFactory {
 	private static final Map<String, Node> nodes;
@@ -38,7 +37,8 @@ public class NodeFactory {
 	}
 	
 	public static final Node createNode(String nodeType, String functionIdentifier, List<Variable> parameters) {
-		for(Entry<String, Node> entry : nodes.entrySet()) {
+		Set<Entry<String, Node>> entrySet = nodes.entrySet();
+		for(Entry<String, Node> entry : entrySet) {
 		    String key = entry.getKey();
 		    Node node = entry.getValue();
 		    

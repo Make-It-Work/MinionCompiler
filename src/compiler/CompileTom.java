@@ -31,15 +31,15 @@ public class CompileTom extends CompiledStatement {
 		if (compiler.currentToken.getNext().getIdentifier().equals(Identifier.ELLIPSEOPEN)) {
 			compiler.currentToken = compiler.currentToken.getNext().getNext();
 			//ArrayList<Variable> parameters = new ArrayList<Variable>();
-			while (!compiler.currentToken.getNext().getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
-				compiler.currentToken = compiler.currentToken.getNext();
+			while (!compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
 				CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
 				addAllToOutput(cs.compile(compiler));
+				compiler.currentToken = compiler.currentToken.getNext();
 			}
 			
 			ArrayList<Variable> paramsTom = new ArrayList<Variable>();
-			
-			for (int i = 0; i < output.size(); i++) {
+			int limit = output.size();
+			for (int i = 0; i < limit; i++) {
 				String varName = "$000" + i;
 				ArrayList<Variable> parametersLefthand = new ArrayList<Variable>();
 				Variable v = new Variable(Identifier.NUMBER, varName);
