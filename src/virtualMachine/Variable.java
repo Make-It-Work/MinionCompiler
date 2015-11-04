@@ -16,7 +16,7 @@ public class Variable {
 			return Integer.parseInt((String)waarde);
 		}
 		//String is suited for all types
-		return (String) waarde;
+		return waarde;
 	}
 
 	public void setWaarde(Object waarde) {
@@ -24,14 +24,17 @@ public class Variable {
 	}
 
 	public void setType(Identifier type) {
-		try {
-			Integer.parseInt( (String)this.waarde );
-			type = Identifier.NUMBER;
+		if (type == Identifier.BOOL) {
+			this.type = type;
+		} else {
+			try {
+				Integer.parseInt((String) this.waarde);
+				type = Identifier.NUMBER;
+			} catch (NumberFormatException e) {
+				type = Identifier.STRING;
+			}
+			this.type = type;
 		}
-		catch( NumberFormatException e ) {
-			type = Identifier.STRING;
-		}
-		this.type = type;
 	}
 
 	public Identifier getType() {

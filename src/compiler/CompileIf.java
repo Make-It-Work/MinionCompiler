@@ -15,7 +15,7 @@ public class CompileIf extends CompiledStatement{
 
 	private LinkedList<Node> _condition;
 	private LinkedList<Node> _body;
-	
+
 	@Override
 	public
 	boolean isMatch(Token currentToken) {
@@ -36,19 +36,21 @@ public class CompileIf extends CompiledStatement{
 
 		_condition = new LinkedList<Node>();
 		_body = new LinkedList<Node>();
-		
-		//first we start with a do nothing node
-		DoNothing nothingStart = (DoNothing) NodeFactory.createNode("DoNothing");
-		output.add(nothingStart);
+
+		//first we start with a do nothing node (optioneel)
+		DoNothing doNothingBeforeIf = (DoNothing) NodeFactory.createNode("DoNothing");
+		DoNothing doNothingInsideIf = new DoNothing();
+		DoNothing doNothingAfterIf = new DoNothing();
+		output.add(doNothingBeforeIf);
 		//jump for the condition
 		ConditionalJump ifJump = new ConditionalJump();
 		//destination for the true
-		DoNothing nothingTrue = new DoNothing();
-		output.add(nothingTrue);
-		//destination for false/done
-		DoNothing nothingDone = new DoNothing();
-		output.add(nothingDone);
-		
+		ifJump.setTrueNode(doNothingInsideIf);
+		ifJump.setFalseNode(doNothingAfterIf);
+//		//destination for false/done
+//		DoNothing nothingDone = new DoNothing();
+//		output.add(nothingDone);
+
 		boolean compilingCondition = true;
 		while(compiler.currentToken != null && compiler.currentToken.hasNext())
 		{
@@ -59,29 +61,32 @@ public class CompileIf extends CompiledStatement{
 			}
 			else if (level > 0){//condition or body
 				if(compilingCondition){
-					compiler.currentToken = compiler.currentToken.getNext();
+					//compiler.currentToken = compiler.currentToken.getNext();
 					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-					addAllToCondition(cs.compile(compiler));
+//					addAllToCondition(cs.compile(compiler));
+                    _condition.addAll(cs.compile(compiler));
 				} else {
 					if (!compiler.currentToken.getIdentifier().equals(Identifier.BELLO)) {
 						CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-						addAllToBody(cs.compile(compiler));
+//						addAllToBody(cs.compile(compiler));
+                        _body.addAll(cs.compile(compiler));
 					}
 				}
 			}
-			
+
 			if(compiler.currentToken.getIdentifier().needsClosing())
 				level++;
 			else if(compiler.currentToken.getIdentifier().isClosing())
 				level--;
-			
+
 			compiler.currentToken = compiler.currentToken.getNext();
 		}
 
-		ifJump.setTrueNode(nothingTrue);
-		ifJump.setFalseNode(nothingDone);
-		output.add(ifJump);
-		
+        output.addAll(_condition);
+        output.add(ifJump);
+        output.add(doNothingInsideIf);
+        output.addAll(_body);
+		output.add(doNothingAfterIf);
 		return output;
 	}
 
@@ -97,7 +102,7 @@ public class CompileIf extends CompiledStatement{
 			_condition.addLast(newNode);
 		}
 	}
-	
+
 	private void addAllToBody(List<Node> newNodes) {
 		for (Node newNode : newNodes) {
 			if (!_body.isEmpty() ) {

@@ -22,8 +22,14 @@ public class NodeVisitor {
     }
     
     public void Visit(ConditionalJump node){
-    	if(vm.returnValue.getType() == Identifier.BOOL)
-	    	nextNode = (vm.returnValue.getWaarde().equals("true")) ? nextNode = node.getTrueNode() : node.getFalseNode();
+    	if(vm.returnValue.getType() == Identifier.BOOL) {
+			if (vm.returnValue.getWaarde().equals(true)) {
+				nextNode = node.getTrueNode();
+			} else {
+				nextNode = node.getFalseNode();
+			}
+		}
+
     }
     public void Visit(DirectFunctionCall node) {
     	nextNode = node.getNext();
