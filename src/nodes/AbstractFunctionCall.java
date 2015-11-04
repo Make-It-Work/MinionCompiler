@@ -11,10 +11,6 @@ public abstract class AbstractFunctionCall extends Node {
 		return parameters;
 	}
 
-	public void setParameters(List<Variable> parameters) {
-		this.parameters = parameters;
-	}
-
 	public AbstractFunctionCall() {
 		functionIdentifier = "";
 		parameters = new ArrayList<Variable>();
@@ -27,7 +23,7 @@ public abstract class AbstractFunctionCall extends Node {
 	@Override
 	public void accept(NodeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.Visit(this);
 	}
 
 	@Override

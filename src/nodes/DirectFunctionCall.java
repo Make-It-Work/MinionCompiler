@@ -9,7 +9,7 @@ public class DirectFunctionCall extends AbstractFunctionCall {
 	@Override
 	public void accept(NodeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.Visit(this);
 	}
 
 	@Override
@@ -23,10 +23,6 @@ public class DirectFunctionCall extends AbstractFunctionCall {
 		// TODO Auto-generated method stub
 		return new DirectFunctionCall();
 	}
-	
-	@Override
-	public void setParameters(List<Variable> params) {
-		this.parameters = params;
-	}
+
 
 }

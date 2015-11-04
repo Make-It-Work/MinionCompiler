@@ -12,13 +12,16 @@ public class NodeVisitor {
     }
     
     public void Visit(ConditionalJump node){
-    	
+    	nextNode = node.getNext();
     }
     public void Visit(DirectFunctionCall node) {
-    	
-    }	
+    	nextNode = node.getNext();
+    }
+	public void Visit(AbstractFunctionCall node) {
+		nextNode = node.getNext();
+	}
     public void Visit(FunctionCall node) {
-		
+		nextNode = node.getNext();
     }
 
 	public Node getNextNode() {

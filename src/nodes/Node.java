@@ -1,5 +1,6 @@
 package nodes;
 
+import java.util.HashMap;
 import java.util.List;
 
 import tokenizer.Token;
@@ -9,6 +10,7 @@ public abstract class Node {
 	private Node previous;
 	private Node next;
 	protected List<Token> tokens;
+	protected List<Variable> parameters;
 	protected String functionIdentifier;
 	
 	public Node getNext()
@@ -37,7 +39,9 @@ public abstract class Node {
 	public abstract void accept(NodeVisitor visitor);
 	public abstract boolean isMatch(String nodeType);
 	public abstract Node copy();
-	public void setParameters(List<Variable> params) {}
+	public void setParameters(List<Variable> params) {
+		this.parameters = params;
+	}
 
 	public void setIdentifier(String functionIdentifier) {
 		// TODO Auto-generated method stub
@@ -48,4 +52,13 @@ public abstract class Node {
 		return this.functionIdentifier;
 	}
 
+	public void printString() {
+		System.out.println(functionIdentifier);
+		if (this.parameters != null) {
+			for (Variable v : this.parameters) {
+				System.out.println(v.getWaarde());
+			}
+		}
+		System.out.println("___");
+	}
 }

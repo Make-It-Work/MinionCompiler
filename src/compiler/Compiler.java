@@ -35,11 +35,17 @@ public class Compiler {
 			CompiledStatement cs = CompiledStatementFactory.createStatement(currentToken);
 			if (cs != null) {
 				LinkedList<Node> csCompiled = cs.compile(this);
-				this.addAllToOutput(csCompiled);
+                this.addAllToOutput(csCompiled);
 			}
 			currentToken = currentToken.getNext();
 		}
-		
+
+		int counter = 0;
+        while (counter<outPut.size()) {
+            outPut.get(counter).printString();
+            counter++;
+        }
+
 		VirtualMachine vm = new VirtualMachine();
 		vm.Run(outPut);
 		

@@ -74,13 +74,12 @@ public class CompileWhile extends CompiledStatement{
 		boolean compilingCondition = true;
 		while(compiler.currentToken.hasNext())
 		{
+			compiler.currentToken.printToken();
 			if (compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
 				compilingCondition = false;
 				compiler.currentToken = compiler.currentToken.getNext();
-				continue;
 			}
-			compiler.currentToken.printToken();
-			if (level > 0){//condition or body
+			else if (level > 0){//condition or body
 				if(compilingCondition){
 					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
 					addAllToCondition(cs.compile(compiler));

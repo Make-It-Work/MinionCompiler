@@ -13,7 +13,7 @@ public class Variable {
 	
 	public Object getWaarde() {
 		if (type == Identifier.NUMBER) {
-			return (int) waarde;
+			return Integer.parseInt((String)waarde);
 		}
 		//String is suited for all types
 		return (String) waarde;
@@ -24,6 +24,13 @@ public class Variable {
 	}
 
 	public void setType(Identifier type) {
+		try {
+			Integer.parseInt( (String)this.waarde );
+			type = Identifier.NUMBER;
+		}
+		catch( NumberFormatException e ) {
+			type = Identifier.STRING;
+		}
 		this.type = type;
 	}
 

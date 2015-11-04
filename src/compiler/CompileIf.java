@@ -59,8 +59,6 @@ public class CompileIf extends CompiledStatement{
 					//generate the body from the factory
 				}
 			}
-			
-			
 			compiler.currentToken = compiler.currentToken.getNext();
 		}
 

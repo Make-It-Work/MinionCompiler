@@ -6,7 +6,7 @@ public class FunctionCall extends AbstractFunctionCall {
 	@Override
 	public void accept(NodeVisitor visitor) {
 		// TODO Auto-generated method stub
-		
+		visitor.Visit(this);
 	}
 
 	@Override
