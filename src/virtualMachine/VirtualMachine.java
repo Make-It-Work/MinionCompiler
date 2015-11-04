@@ -20,16 +20,17 @@ public class VirtualMachine {
         while (currentNode != null)
         {
         	System.out.println(currentNode.getIdentifier());
-        	Node action = (Node) currentNode;
-//        	if (action != null)
-//            {
-//    			String name = (String)action.getParameters().get(0).getWaarde();
-//    			AbstractCommand command = CommandFactory.create(name);
-//     			command.Execute(this, action.getParameters());
-//            }
+        	Node action = currentNode;
+        	if (action != null && action.getParameters() != null)
+            {
+                if(action.getParameters().size() > 0) {
+                    String name = (String) action.getParameters().get(0).getWaarde();
+                    AbstractCommand command = CommandFactory.create(name);
+                    command.Execute(this, action.getParameters());
+                }
+            }
         	
         	currentNode.accept(visitor);
-        	//currentNode = currentNode.
             currentNode = visitor.getNextNode();
         }
     }

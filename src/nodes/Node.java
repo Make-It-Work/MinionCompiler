@@ -43,7 +43,11 @@ public abstract class Node {
 		this.parameters = params;
 	}
 
-	public void setIdentifier(String functionIdentifier) {
+    public List<Variable> getParameters() {
+        return parameters;
+    }
+
+    public void setIdentifier(String functionIdentifier) {
 		// TODO Auto-generated method stub
 		this.functionIdentifier = functionIdentifier;
 	}
