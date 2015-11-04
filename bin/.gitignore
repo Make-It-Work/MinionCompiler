@@ -1,7 +1,8 @@
-/nodes/
-/compiler/
-/tokenizer/
 /META-INF/
-/virtualMachine/
+/compiler/
 /factories/
+/minion.txt
 /minionwhile.txt
+/nodes/
+/tokenizer/
+/virtualMachine/

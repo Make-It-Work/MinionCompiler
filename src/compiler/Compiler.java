@@ -41,6 +41,8 @@ public class Compiler {
 			}
 			if(currentToken != null && currentToken.hasNext())
 				currentToken = currentToken.getNext();
+			else
+				break;
 		}
 
 		int counter = 0;

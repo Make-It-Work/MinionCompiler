@@ -1,4 +1,6 @@
-tyelas ( number <= 4 ) bello
+poka number = 2 ;
+poka string = ' Bello! ' ;
+tyelas ( number <= 8 ) bello
 tom ( number ) ;
 number = number + 1 ;
 poopaye

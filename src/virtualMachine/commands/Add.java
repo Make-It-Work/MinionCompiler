@@ -14,12 +14,25 @@ public class Add extends AbstractCommand {
 		Object returnWaarde;
 		Variable left = vm.variables.get(parameters.get(0).getWaarde());
 		Variable right = vm.variables.get(parameters.get(1).getWaarde());
-		if(left.getType().equals(Identifier.NUMBER) && right.getType().equals(Identifier.NUMBER)) {
-			returnWaarde = ((int)left.getWaarde()) + ((int)right.getWaarde());
-			vm.returnValue = new Variable(Identifier.NUMBER, returnWaarde);
+		if(isIntGeneric(left) && isIntGeneric(right)) {
+			int intLeft = toInt(left);
+			int intRight = toInt(right);
+			returnWaarde = intLeft + intRight;
+			vm.returnValue = new Variable(Identifier.STRING, returnWaarde);
 		} else {
 			returnWaarde = left.getWaarde().toString() + right.getWaarde().toString();
 			vm.returnValue = new Variable(Identifier.STRING, returnWaarde);
+		}
+	}
+	
+	private boolean isInt(Variable v)
+	{
+		try{
+			Integer.parseInt((String)v.getWaarde());
+			return true;
+		}catch(Exception e)
+		{
+			return false;
 		}
 	}
 

@@ -5,3 +5,4 @@ virtualMachine.commands.ReturnToVariable
 virtualMachine.commands.VariableToReturn
 virtualMachine.commands.Equals
 virtualMachine.commands.PrintCommand
+virtualMachine.commands.LessThanEquals

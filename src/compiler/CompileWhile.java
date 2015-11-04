@@ -46,7 +46,7 @@ public class CompileWhile extends CompiledStatement{
 		return new CompileWhile();
 	}
 
-
+	/*
 	@Override
 	public LinkedList<Node> compile(Compiler compiler) {
 		output = new LinkedList<Node>();
@@ -105,7 +105,72 @@ public class CompileWhile extends CompiledStatement{
 		
 		return output;
 	}
+	*/
+	
+	public LinkedList<Node> compile(Compiler compiler) {
+		output = new LinkedList<Node>();
+		int level = 0;
 
+		_condition = new LinkedList<Node>();
+		_body = new LinkedList<Node>();
+
+		//first we start with a do nothing node (optioneel)
+		DoNothing doNothingBeforeIf = (DoNothing) NodeFactory.createNode("DoNothing");
+		DoNothing doNothingInsideIf = new DoNothing();
+		Jump jumpAfterIf = new Jump();
+		jumpAfterIf.setJumpNode(doNothingBeforeIf);
+		DoNothing doNothingAfterIf = new DoNothing();
+		output.add(doNothingBeforeIf);
+		//jump for the condition
+		ConditionalJump ifJump = new ConditionalJump();
+		//destination for the true
+		ifJump.setTrueNode(doNothingInsideIf);
+		ifJump.setFalseNode(doNothingAfterIf);
+//		//destination for false/done
+//		DoNothing nothingDone = new DoNothing();
+//		output.add(nothingDone);
+
+		boolean compilingCondition = true;
+		while(compiler.currentToken != null && compiler.currentToken.hasNext())
+		{
+			compiler.currentToken.printToken();
+			if (compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
+				compilingCondition = false;
+				//compiler.currentToken = compiler.currentToken.getNext();
+			}
+			else if (level > 0){//condition or body
+				if(compilingCondition){
+					//compiler.currentToken = compiler.currentToken.getNext();
+					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
+//					addAllToCondition(cs.compile(compiler));
+                    _condition.addAll(cs.compile(compiler));
+				} else {
+					if (!compiler.currentToken.getIdentifier().equals(Identifier.BELLO)) {
+						CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
+//						addAllToBody(cs.compile(compiler));
+                        _body.addAll(cs.compile(compiler));
+					}
+				}
+			}
+
+			if(compiler.currentToken.getIdentifier().needsClosing())
+				level++;
+			else if(compiler.currentToken.getIdentifier().isClosing())
+				level--;
+
+			compiler.currentToken = compiler.currentToken.getNext();
+		}
+
+        output.addAll(_condition);
+        output.add(ifJump);
+        output.add(doNothingInsideIf);
+        output.addAll(_body);
+        output.add(jumpAfterIf);
+		output.add(doNothingAfterIf);
+		return output;
+	}
+	
+	
 	private void addAllToCondition(List<Node> newNodes) {
 		for (Node newNode : newNodes) {
 			if (!_condition.isEmpty()) {

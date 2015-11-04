@@ -103,7 +103,9 @@ public class CompileOperator extends CompiledStatement{
 			}
 			break;
 		}
-		
+
+//		parametersLefthand.add(new Variable(Identifier.NUMBER,leftHandVariableName));
+//		output.add(NodeFactory.createNode("DirectFunctionCall", "ReturnToVariable", parametersLefthand));
 		
 		return output;
 	}
