@@ -45,6 +45,6 @@ public class Divide extends AbstractCommand {
     @Override
     AbstractCommand copy() {
         // TODO Auto-generated method stub
-        return new Add();
+        return new Divide();
     }
 }

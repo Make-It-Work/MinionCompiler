@@ -34,6 +34,6 @@ public class GreaterThan extends AbstractCommand {
     @Override
     AbstractCommand copy() {
         // TODO Auto-generated method stub
-        return new LessThanEquals();
+        return new GreaterThan();
     }
 }

@@ -42,6 +42,6 @@ public class Subtract extends AbstractCommand {
     @Override
     AbstractCommand copy() {
         // TODO Auto-generated method stub
-        return new Add();
+        return new Subtract();
     }
 }

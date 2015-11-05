@@ -22,6 +22,6 @@ public class NotEquals extends AbstractCommand {
     @Override
     AbstractCommand copy() {
         // TODO Auto-generated method stub
-        return new Equals();
+        return new NotEquals();
     }
 }

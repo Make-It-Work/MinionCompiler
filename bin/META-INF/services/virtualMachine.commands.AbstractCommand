@@ -1,8 +1,16 @@
 virtualMachine.commands.Add
 virtualMachine.commands.ConstantToReturn
 virtualMachine.commands.DeclareVariable
+virtualMachine.commands.Divide
 virtualMachine.commands.ReturnToVariable
 virtualMachine.commands.VariableToReturn
 virtualMachine.commands.Equals
 virtualMachine.commands.PrintCommand
 virtualMachine.commands.LessThanEquals
+virtualMachine.commands.GreaterThan
+virtualMachine.commands.GreaterThanEquals
+virtualMachine.commands.LessThan
+virtualMachine.commands.LessThanEquals
+virtualMachine.commands.Multiply
+virtualMachine.commands.NotEquals
+virtualMachine.commands.Subtract
