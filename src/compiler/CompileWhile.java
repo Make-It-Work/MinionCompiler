@@ -121,33 +121,22 @@ public class CompileWhile extends CompiledStatement{
 		jumpAfterIf.setJumpNode(doNothingBeforeIf);
 		DoNothing doNothingAfterIf = new DoNothing();
 		output.add(doNothingBeforeIf);
-		//jump for the condition
 		ConditionalJump ifJump = new ConditionalJump();
-		//destination for the true
 		ifJump.setTrueNode(doNothingInsideIf);
 		ifJump.setFalseNode(doNothingAfterIf);
-//		//destination for false/done
-//		DoNothing nothingDone = new DoNothing();
-//		output.add(nothingDone);
-
 		boolean compilingCondition = true;
 		while(compiler.currentToken != null && compiler.currentToken.hasNext())
 		{
-			compiler.currentToken.printToken();
 			if (compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
 				compilingCondition = false;
-				//compiler.currentToken = compiler.currentToken.getNext();
 			}
 			else if (level > 0){//condition or body
 				if(compilingCondition){
-					//compiler.currentToken = compiler.currentToken.getNext();
 					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-//					addAllToCondition(cs.compile(compiler));
                     _condition.addAll(cs.compile(compiler));
 				} else {
 					if (!compiler.currentToken.getIdentifier().equals(Identifier.BELLO)) {
 						CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-//						addAllToBody(cs.compile(compiler));
                         _body.addAll(cs.compile(compiler));
 					}
 				}

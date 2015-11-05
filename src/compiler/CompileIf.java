@@ -54,21 +54,17 @@ public class CompileIf extends CompiledStatement{
 		boolean compilingCondition = true;
 		while(compiler.currentToken != null && compiler.currentToken.hasNext())
 		{
-			compiler.currentToken.printToken();
+			//compiler.currentToken.printToken();
 			if (compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
 				compilingCondition = false;
-				//compiler.currentToken = compiler.currentToken.getNext();
 			}
 			else if (level > 0){//condition or body
 				if(compilingCondition){
-					//compiler.currentToken = compiler.currentToken.getNext();
 					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-//					addAllToCondition(cs.compile(compiler));
                     _condition.addAll(cs.compile(compiler));
 				} else {
 					if (!compiler.currentToken.getIdentifier().equals(Identifier.BELLO)) {
 						CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-//						addAllToBody(cs.compile(compiler));
                         _body.addAll(cs.compile(compiler));
 					}
 				}

@@ -44,8 +44,6 @@ public class NodeFactory {
 		    
 		    if(node.isMatch(nodeType)) {
 		    	Node n = node.copy();
-				if (parameters != null)
-					System.out.println(parameters.size());
 				n.setParameters(parameters);
 		    	n.setIdentifier(functionIdentifier);
 		    	return n;

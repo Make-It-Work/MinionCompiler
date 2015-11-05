@@ -15,6 +15,8 @@ public class VirtualMachine {
 
     public void Run(LinkedList<Node> list)
     {
+        System.out.println("Running Virtual Machine");
+        System.out.println("_________________");
         Node currentNode = list.getFirst();
         NodeVisitor visitor = new NodeVisitor(this);
         while (currentNode != null)

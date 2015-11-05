@@ -22,7 +22,7 @@ public class CommandFactory {
 	public static final AbstractCommand create(final String name) {
 		if (commands.containsKey(name)) {
 			AbstractCommand comm = commands.get(name).copy();
-			System.out.println("created " + name);
+			//System.out.println("created " + name);
 			return comm;
 		}
 		

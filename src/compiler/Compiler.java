@@ -27,6 +27,8 @@ public class Compiler {
 //			Token end
 			)
 	{
+		System.out.println("Running Compiler");
+        System.out.println("_________________");
 		outPut.add(NodeFactory.createNode("DoNothing"));
 		currentToken = tokens.get(0);
 		
@@ -36,20 +38,18 @@ public class Compiler {
 			if (cs != null) {
 				LinkedList<Node> csCompiled = cs.compile(this);
                 this.addAllToOutput(csCompiled);
-			}else{
-				System.out.println();
 			}
 			if(currentToken != null && currentToken.hasNext())
 				currentToken = currentToken.getNext();
 			else
 				break;
 		}
-
-		int counter = 0;
-        while (counter<outPut.size()) {
-            outPut.get(counter).printString();
-            counter++;
-        }
+//
+//		int counter = 0;
+//        while (counter<outPut.size()) {
+//            outPut.get(counter).printString();
+//            counter++;
+//        }
 
 		VirtualMachine vm = new VirtualMachine();
 		vm.Run(outPut);

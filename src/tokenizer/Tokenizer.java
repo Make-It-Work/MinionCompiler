@@ -20,7 +20,8 @@ public class Tokenizer {
     static Token first = null;
 	
 	public static void main(String [] args) throws Exception {
-		
+		System.out.println("Running tokenizer");
+		System.out.println("________________");
 		identifiersMap = fillHashmap();
 		
         // The name of the file to open.
