@@ -25,7 +25,7 @@ public class Tokenizer {
 		identifiersMap = fillHashmap();
 		
         // The name of the file to open.
-        String fileName = "src/minionwhile.txt";
+        String fileName = "src/minion.txt";
 
         // This will reference one line at a time
         String line = null;

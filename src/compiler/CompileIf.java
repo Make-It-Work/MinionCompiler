@@ -37,19 +37,13 @@ public class CompileIf extends CompiledStatement{
 		_condition = new LinkedList<Node>();
 		_body = new LinkedList<Node>();
 
-		//first we start with a do nothing node (optioneel)
 		DoNothing doNothingBeforeIf = (DoNothing) NodeFactory.createNode("DoNothing");
 		DoNothing doNothingInsideIf = new DoNothing();
 		DoNothing doNothingAfterIf = new DoNothing();
 		output.add(doNothingBeforeIf);
-		//jump for the condition
 		ConditionalJump ifJump = new ConditionalJump();
-		//destination for the true
 		ifJump.setTrueNode(doNothingInsideIf);
 		ifJump.setFalseNode(doNothingAfterIf);
-//		//destination for false/done
-//		DoNothing nothingDone = new DoNothing();
-//		output.add(nothingDone);
 
 		boolean compilingCondition = true;
 		while(compiler.currentToken != null && compiler.currentToken.hasNext())

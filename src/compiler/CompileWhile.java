@@ -17,21 +17,7 @@ public class CompileWhile extends CompiledStatement{
 	private LinkedList<Node> _condition;
 	private LinkedList<Node> _body;
 	
-	public CompileWhile() {
-//		_compiledStatement = new LinkedList<Node>();
-//		_condition = new LinkedList<Node>();
-//		_body = new LinkedList<Node>();
-//		
-//		Node conditionalJumpNode = new ConditionalJump();
-//		Node jumpBackNode = new Jump();
-//		
-//		_compiledStatement.add(NodeFactory.createNode("DoNothing"));
-//		_compiledStatement.addAll(_condition);
-//		_compiledStatement.add(conditionalJumpNode);
-//		_compiledStatement.addAll(_body);
-//		_compiledStatement.add(jumpBackNode);
-//		_compiledStatement.add(NodeFactory.createNode("DoNothing"));
-	}
+	public CompileWhile() {}
 	
 	@Override
 	public
@@ -46,67 +32,6 @@ public class CompileWhile extends CompiledStatement{
 		return new CompileWhile();
 	}
 
-	/*
-	@Override
-	public LinkedList<Node> compile(Compiler compiler) {
-		output = new LinkedList<Node>();
-		int level = 0;
-
-		_condition = new LinkedList<Node>();
-		_body = new LinkedList<Node>();
-		
-		//first we start with a do nothing node
-		DoNothing nothingStart = (DoNothing) NodeFactory.createNode("DoNothing");
-		output.add(nothingStart);
-		//jump for the condition
-		ConditionalJump ifJump = new ConditionalJump();
-		//destination for the true
-		DoNothing nothingTrue = new DoNothing();
-		output.add(nothingTrue);
-		//Jump back to the condition
-		Jump backJump = new Jump();
-		backJump.setNext(ifJump);
-		output.add(backJump);
-		//destination for false/done
-		DoNothing nothingDone = new DoNothing();
-		output.add(nothingDone);
-		
-		boolean compilingCondition = true;
-		while(compiler.currentToken.hasNext())
-		{
-			compiler.currentToken.printToken();
-			if (compiler.currentToken.getIdentifier().equals(Identifier.ELLIPSECLOSE)) {
-				compilingCondition = false;
-				compiler.currentToken = compiler.currentToken.getNext();
-			}
-			else if (level > 0){//condition or body
-				if(compilingCondition){
-					CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-					addAllToCondition(cs.compile(compiler));
-				} else {
-					if (!compiler.currentToken.getIdentifier().equals(Identifier.BELLO)) {
-						CompiledStatement cs = CompiledStatementFactory.createStatement(compiler.currentToken);
-						addAllToBody(cs.compile(compiler));
-					}
-				}
-			}
-			
-			if(compiler.currentToken.getIdentifier().needsClosing())
-				level++;
-			else if(compiler.currentToken.getIdentifier().isClosing())
-				level--;
-			
-			compiler.currentToken = compiler.currentToken.getNext();
-		}
-
-		ifJump.setTrueNode(nothingTrue);
-		ifJump.setFalseNode(nothingDone);
-		output.add(ifJump);
-		
-		return output;
-	}
-	*/
-	
 	public LinkedList<Node> compile(Compiler compiler) {
 		output = new LinkedList<Node>();
 		int level = 0;
