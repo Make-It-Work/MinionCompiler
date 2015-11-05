@@ -1,0 +1,7 @@
+poka x = 0 ;
+underwear ( x == 0 ) bello
+tom ( x + 3 ) ;
+poopaye
+salaka bello
+tom ( x – 2 ) ;
+poopaye
